@@ -32,11 +32,11 @@ public class LoginTest {
     }
 
 
-    /*@AfterClass
+    @AfterClass
     public static void tearDown() {
         vebDriver.quit();
         vebDriver = null;
-    }*/
+    }
 
 
 
