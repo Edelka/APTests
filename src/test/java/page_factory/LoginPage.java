@@ -1,24 +1,14 @@
 package page_factory;
 
 
-import org.junit.*;
-import org.junit.runner.RunWith;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.concurrent.TimeUnit;
-
-import static org.hamcrest.CoreMatchers.containsString;
 
 @RunWith(JUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -26,24 +16,29 @@ import static org.hamcrest.CoreMatchers.containsString;
 
 public class LoginPage {
 
+
     protected static final String BASE_URL = "http://automationpractice.com/";
     protected  static WebDriver vebDriver;
 
-    //Define User name Field
+
     @FindBy(id = "email")
     private WebElement login;
 
-    //Define Password Field
     @FindBy(id = "passwd")
     private WebElement pwd;
 
-    //Define Login Button
     @FindBy(id = "SubmitLogin")
     private WebElement loginButton;
 
+    //Initialization
+    LoginPage(WebDriver webDriver){
+        this.vebDriver = vebDriver;
+        PageFactory.initElements(webDriver, this);
+    }
+
+
     //Define Username Enter Method
-    public void enterUserName(String username)
-    {
+    public void enterUserName(String username) {
         login.sendKeys(username);
     }
 
@@ -57,6 +52,13 @@ public class LoginPage {
         loginButton.click();
     }
 
+    public AccountPage logIn(String username, String password){
+        enterUserName(username);
+        enterPassword(password);
+        clickSignInBtn();
+
+        return new AccountPage(vebDriver);
+    }
 
 }
 
