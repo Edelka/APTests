@@ -31,7 +31,7 @@ import java.util.logging.Level;
 
 public class BaseTest {
 
-    private static final Logger LOG = LogManager.getLogger(HomePage.class);
+    private static final Logger LOG = LogManager.getLogger(BaseTest.class);
     protected static final String BASE_URL = "http://automationpractice.com";
     protected static WebDriver webDriver;
 
